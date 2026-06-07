@@ -54,7 +54,7 @@
     <div class="fgrid">
       <div>
         <h4>東京聖テモテ教会</h4>
-        <p style="font-size:.92rem;color:#cfc8d8;line-height:1.9">日本聖公会 東京教区<br>St. Timothy&#39;s Church, Tokyo<br>牧師：ヨセフ 太田 信三 司祭</p>
+        <p style="font-size:.92rem;color:#cfc8d8;line-height:1.9">日本聖公会 東日本教区<br>St. Timothy&#39;s Church, Tokyo<br>牧師：ヨセフ 太田 信三 司祭</p>
         <p style="margin-top:10px"><a href="mailto:5836timothy@gmail.com">5836timothy@gmail.com</a></p>
       </div>
       <div>
