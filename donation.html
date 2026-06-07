@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東京聖テモテ教会 ── 建築募金のお願い</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ── donation page固有 ── */
+  .donation-hero{
+    position:relative;
+    padding:80px 0 90px;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .donation-hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background-image:url("img/budou_model.jpg");
+    background-size:cover;
+    background-position:center 35%;
+    background-repeat:no-repeat;
+    opacity:.55;
+  }
+  .donation-hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(180deg, rgba(251,245,233,.55) 0%, rgba(251,245,233,.20) 35%, rgba(251,245,233,.85) 100%),
+      linear-gradient(90deg, rgba(251,245,233,.95) 0%, rgba(251,245,233,.55) 45%, rgba(251,245,233,.25) 100%);
+  }
+  @media(max-width:760px){
+    .donation-hero{padding:60px 0 60px}
+    .donation-hero::before{background-position:center 45%}
+    .donation-hero::after{
+      background:
+        linear-gradient(180deg, rgba(251,245,233,.80) 0%, rgba(251,245,233,.55) 40%, rgba(251,245,233,.92) 100%);
+    }
+  }
+  .donation-hero .wrap{position:relative;z-index:1;max-width:780px;margin:0 auto}
+  .donation-hero .eyebrow{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    color:var(--sky-deep);font-size:1.2rem;letter-spacing:.06em;margin-bottom:10px;
+  }
+  .donation-hero h1{
+    font-family:"Zen Old Mincho",serif;font-weight:700;
+    font-size:clamp(1.9rem,5.2vw,2.9rem);line-height:1.42;letter-spacing:.03em;
+    margin-bottom:18px;color:var(--sky-deep);
+    text-shadow:0 1px 0 rgba(255,253,248,.9), 0 0 24px rgba(255,253,248,.7);
+  }
+  .donation-hero h1 .hl{color:var(--gold-deep)}
+  .donation-hero .sub{
+    font-family:"Zen Old Mincho",serif;font-size:1.1rem;color:var(--ink);
+    margin-bottom:8px;letter-spacing:.04em;
+  }
+  .donation-hero p.lead{
+    font-size:1.02rem;color:var(--ink);max-width:38em;
+    line-height:1.95;
+    text-shadow:0 1px 0 rgba(255,253,248,.9);
+  }
+
+  /* 募金要項テーブル */
+  .gist{
+    display:grid;gap:14px;margin-top:8px;
+  }
+  .gist .row{
+    display:grid;grid-template-columns:max-content 1fr;gap:18px;
+    padding:16px 20px;background:var(--cream-2);border:1px solid var(--line);
+    border-radius:14px;align-items:baseline;
+  }
+  @media(max-width:560px){.gist .row{grid-template-columns:1fr}}
+  .gist .row .k{
+    font-family:"Zen Old Mincho",serif;font-weight:600;color:var(--sky-deep);
+    font-size:1rem;min-width:8em;
+  }
+  .gist .row .v{font-size:.98rem;color:var(--ink);line-height:1.85}
+  .gist .row .v .ph{color:var(--ink-soft);font-style:italic;font-size:.9rem}
+
+  /* 階別構成 */
+  .floors{display:grid;gap:14px;margin-top:8px}
+  .floor{
+    display:grid;grid-template-columns:64px 1fr;gap:18px;
+    padding:18px 22px;background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;align-items:start;box-shadow:var(--shadow-sm);
+    transition:.2s;
+  }
+  .floor:hover{transform:translateY(-2px);border-color:var(--gold-soft)}
+  .floor .lvl{
+    font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:700;
+    font-size:1.7rem;color:var(--gold-deep);line-height:1;letter-spacing:.04em;
+  }
+  .floor h4{
+    font-family:"Zen Old Mincho",serif;font-size:1.05rem;font-weight:600;
+    margin-bottom:6px;color:var(--ink);
+  }
+  .floor p{font-size:.92rem;color:var(--ink-soft);margin:0}
+
+  /* コンセプト箇条 */
+  .concepts{display:grid;gap:14px;margin-top:8px}
+  @media(min-width:680px){.concepts{grid-template-columns:1fr 1fr}}
+  .concept{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:18px 20px;background:var(--cream-2);border:1px solid var(--line);
+    border-radius:14px;
+  }
+  .concept .num{
+    flex:none;width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,var(--sage),#6f9569);color:#fff;
+    display:grid;place-items:center;font-family:"Cormorant Garamond",serif;
+    font-weight:700;font-style:italic;font-size:1.05rem;
+  }
+  .concept p{font-size:.97rem;color:var(--ink);line-height:1.8;margin:0}
+
+  /* メンバー紹介 */
+  .members{display:grid;gap:18px;margin-top:8px}
+  @media(min-width:760px){.members{grid-template-columns:1fr 1fr}}
+  .member{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:22px 24px;box-shadow:var(--shadow-sm);
+  }
+  .member h4{
+    font-family:"Zen Old Mincho",serif;font-size:1.15rem;font-weight:600;
+    margin-bottom:4px;color:var(--sky-deep);
+  }
+  .member .role{
+    font-size:.88rem;color:var(--gold-deep);font-weight:700;margin-bottom:10px;
+    letter-spacing:.04em;
+  }
+  .member p{font-size:.93rem;color:var(--ink-soft);line-height:1.85;margin:0}
+
+  /* 応援メッセージ */
+  .cheer{
+    background:linear-gradient(135deg,#FFFDF5,#FFF6E1);
+    border:1px solid var(--gold-soft);border-radius:var(--radius);
+    padding:24px 26px;box-shadow:var(--shadow-sm);
+    font-size:.97rem;color:var(--ink);line-height:1.9;
+  }
+  .cheer .label{
+    display:inline-block;font-family:"Zen Old Mincho",serif;font-weight:600;
+    color:var(--gold-deep);font-size:.92rem;margin-bottom:8px;
+    padding:3px 12px;background:var(--gold-soft);border-radius:999px;
+    letter-spacing:.05em;
+  }
+
+  /* 建物アクソメ画像 */
+  .axon-figure{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow);margin-bottom:24px;
+  }
+  .axon-figure img{border-radius:14px;width:100%;height:auto;display:block}
+  .axon-figure figcaption{
+    text-align:center;font-size:.86rem;color:var(--ink-soft);
+    margin-top:12px;font-family:"Zen Old Mincho",serif;letter-spacing:.05em;
+  }
+
+  /* CTA 大きな募金ボタン */
+  .donate-cta{
+    background:linear-gradient(140deg,var(--sky-soft),#fff 60%,var(--gold-soft));
+    border:1px solid var(--gold-soft);border-radius:var(--radius);
+    padding:clamp(28px,5vw,40px);box-shadow:var(--shadow);text-align:center;
+  }
+  .donate-cta h3{
+    font-family:"Zen Old Mincho",serif;font-size:1.35rem;font-weight:600;
+    margin-bottom:8px;color:var(--sky-deep);
+  }
+  .donate-cta p{font-size:.98rem;color:var(--ink-soft);max-width:32em;margin:0 auto 18px}
+  .donate-cta .btn-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+</style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<!-- HERO -->
+<div class="donation-hero">
+  <div class="wrap">
+    <p class="eyebrow rise d1">Building Fund &mdash; 建築募金</p>
+    <p class="sub rise d2">日本聖公会東京教区　東京聖テモテ教会</p>
+    <h1 class="rise d2">幼子から青年までが、安心して<br><span class="hl">「愛の器」</span>を育むことができる場のために。</h1>
+    <p class="lead rise d3">東京聖テモテ教会は、礼拝堂に隣接する建物を改装する計画を進めています。地域の方々が気軽に立ち寄り、子どもから青年、入居者、教会員までがゆるやかにつながり、食を通じて世代を超えて出会う ── そんな「愛の器」を育む場をつくります。皆様のお祈りとお支えをお願い申し上げます。</p>
+
+    <div class="cta rise d4" style="margin-top:24px">
+      <a class="btn primary" href="#gist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>献金要項を見る</a>
+      <a class="btn ghost" href="#building"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/></svg>建物のご案内</a>
+    </div>
+  </div>
+</div>
+
+<!-- ごあいさつ -->
+<section id="greeting">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>ごあいさつ</h2><span class="en">Greeting</span>
+    </div>
+    <div class="prose rise">
+      <h3>建築募金のお願いにあたって</h3>
+      <p><!-- ↓ ここに司祭・牧師からのごあいさつ文を差し替えてください ↓ -->
+        
+      </p>
+      <p>
+        
+      </p>
+      <p style="margin-top:1.4em;text-align:right;color:var(--gold-deep);font-family:'Zen Old Mincho',serif">
+        東京聖テモテ教会　牧師　ヨセフ 太田 信三 司祭
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- コンセプト -->
+<section id="concept">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>コンセプト</h2><span class="en">Concept</span>
+    </div>
+    <div class="card sage rise">
+      <span class="tag sage">私たちが目指すもの</span>
+      <h3>こんな場所を目指しています</h3>
+      <div class="concepts">
+        <div class="concept"><span class="num">1</span><p>地域の方々が気軽に立ち寄れる場所にします</p></div>
+        <div class="concept"><span class="num">2</span><p>礼拝堂の雰囲気を大切にした、統一感のある素材・色味とします</p></div>
+        <div class="concept"><span class="num">3</span><p>明るく開かれた緩やかな繋がりのある空間とします</p></div>
+        <div class="concept"><span class="num">4</span><p>食を通じて色々な世代がつながるキッカケをつくります</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 沿革 -->
+<section id="history">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>沿革 ── これまでの働き</h2><span class="en">Our History</span>
+    </div>
+    <div class="prose rise">
+      <p><!-- ↓ ここに教会のこれまでの働き・歩みを差し替えてください ↓ -->
+        
+      </p>
+      <p>
+        
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 建物の構成 -->
+<section id="building">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>建物の構成</h2><span class="en">Building Plan</span>
+    </div>
+    <figure class="axon-figure rise">
+      <img src="img/budou_axonometric_web.jpg" alt="全体アクソメトリック図 ── 礼拝堂と新建物・地域の散歩道・みんなの庭・各階の構成">
+      <figcaption>こんな場所を目指しています</figcaption>
+    </figure>
+
+    <div class="card sky rise" style="margin-bottom:20px">
+      <span class="tag info">B1 〜 RF</span>
+      <h3>5層構成、教会の働きと地域をつなぐ建物</h3>
+      <p>礼拝堂に隣接して建つ新しい建物は、地下1階から屋上テラスまで、世代と働きが交わる場として設計されています。</p>
+    </div>
+
+    <div class="floors rise">
+      <div class="floor">
+        <div class="lvl">RF</div>
+        <div>
+          <h4>屋上テラス／洗濯機置き場</h4>
+          <p>街を見渡せる見晴らしの良いテラス。</p>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="lvl">3F</div>
+        <div>
+          <h4>若年層向け入居施設（個室×8部屋）</h4>
+          <p>既存を活かし、プライバシーに配慮した入居スペース。</p>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="lvl">2F</div>
+        <div>
+          <h4>フリースクール／カウンセリングルーム／共有リビング</h4>
+          <p>子どもや青年たちの第3の居場所。3階の入居者も交わるリビング。</p>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="lvl">1F</div>
+        <div>
+          <h4>エントランスホール／礼拝堂／教会ホール／多目的ホール 等</h4>
+          <p>教会の働きと、今後の様々な働きの受け皿となる自由度が高い空間。みんなのキッチン、フードパントリー、図書室、牧師室、事務室も。</p>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="lvl">B1</div>
+        <div>
+          <h4>スタジオ／倉庫</h4>
+          <p>地下空間を有効活用した倉庫やスタジオスペース。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 一緒に場を育むメンバー -->
+<section id="members">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>これから一緒に場を育むメンバー</h2><span class="en">Our Partners</span>
+    </div>
+    <div class="members rise">
+      <div class="member">
+        <h4>Wood さん</h4>
+        <div class="role">フリースクール</div>
+        <p>特定非営利活動法人 Woods<br>（代表理事：東京諸聖徒教会信徒　金木 遥さん）</p>
+      </div>
+      <div class="member">
+        <h4>片岡 先生</h4>
+        <div class="role">カウンセリングルーム</div>
+        <p>片岡 彩さん<br>（カウンセリングルーム Pokke 主宰、東京教区ハラスメント相談員、臨床心理士、公認心理師、精神保健福祉士、日本学生相談学会認定大学カウンセラー 等）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 募金要項 -->
+<section id="gist">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>献金要項</h2><span class="en">How to Give</span>
+    </div>
+
+    <div class="card gold rise">
+      <span class="tag gold">建築募金のご案内</span>
+      <h3>ご献金のお願い</h3>
+      <div class="gist">
+        <div class="row">
+          <div class="k">募金目標額</div>
+          <div class="v"><!-- ↓ 金額を入力してください ↓ --><span class="ph">（例：○○○万円／調整中）</span></div>
+        </div>
+        <div class="row">
+          <div class="k">募金目的</div>
+          <div class="v">建築および附帯整備<br>幼子から青年までが、安心して「愛の器」を育むことができる場の実現のため</div>
+        </div>
+        <div class="row">
+          <div class="k">募金期間</div>
+          <div class="v"><!-- ↓ 期間を入力してください ↓ --><span class="ph">（例：20XX年X月 〜 20XX年X月）</span></div>
+        </div>
+        <div class="row">
+          <div class="k">募金振込先</div>
+          <div class="v">
+            <!-- ↓ 口座情報を入力してください ↓ -->
+            <span class="ph">銀行名・支店名・口座種別・口座番号・口座名義をご記入ください</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 募金用HP CTA -->
+    <div class="donate-cta rise" style="margin-top:22px">
+      <h3>オンラインでもご献金いただけます</h3>
+      <p>クレジットカード等を用いたオンラインでのご献金にも対応しております。下記ボタンよりお進みください。</p>
+      <div class="btn-row">
+        <!-- ↓ 募金用ホームページのURLを差し替えてください ↓ -->
+        <a class="btn primary" href="#" onclick="alert('準備中です。後日URLをお知らせします。');return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12a10 10 0 1020 0 10 10 0 00-20 0z"/><path d="M12 8v8M8 12h8"/></svg>
+          オンラインで献金する
+        </a>
+        <a class="btn ghost" href="mailto:5836timothy@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg>
+          メールでお問い合わせ
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 応援メッセージ -->
+<!-- <section id="cheer">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>私たちも応援しています！</h2><span class="en">Voices of Support</span>
+    </div>
+    <div class="cheer rise">
+      <span class="label">応援メッセージ</span> -->
+      <!--<p>--><!-- ↓ ここに応援してくださる方々からのメッセージを差し替えてください ↓ -->
+        <!-- この場所は、迷いや痛みを抱えた人にとっての避難所となり、地域の人々が顔を合わせる小さな広場となるはずです。教会が長年培ってきた「ともにいる」働きが、新しい建物を通じてさらに豊かに拡がっていくことを心から期待しています。
+      </p>
+      <p style="margin-top:1em;color:var(--ink-soft);font-size:.9rem">
+        ── ご寄稿いただいた応援メッセージはこちらに順次掲載予定です。
+      </p>
+    </div>
+  </div>
+</section> -->
+
+<!-- お問い合わせ -->
+<!-- <section id="contact">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <h2>お問い合わせ</h2><span class="en">Contact</span>
+    </div>
+    <div class="card sky rise">
+      <h3>建築募金についてのお問い合わせ先</h3>
+      <p>
+        日本聖公会東京教区　東京聖テモテ教会<br>
+        〒113-0032　東京都文京区弥生1-3-12<br>
+        TEL：<span class="ph" style="color:var(--ink-soft);font-style:italic;font-size:.9rem">（電話番号を入力してください）</span><br>
+        FAX：<span class="ph" style="color:var(--ink-soft);font-style:italic;font-size:.9rem">（FAX番号を入力してください）</span><br>
+        E-mail：<a class="ilink" href="mailto:5836timothy@gmail.com">5836timothy@gmail.com</a>
+      </p>
+      <div class="cta" style="margin-top:18px">
+        <a class="btn primary" href="mailto:5836timothy@gmail.com">メールで連絡する</a>
+        <a class="btn ghost" href="access.html">アクセス・地図を見る</a>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- footer -->
+<div id="site-footer"></div>
+
+<script src="partials.js"></script>
+</body>
+</html>
